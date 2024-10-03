@@ -1,0 +1,28 @@
+<h1 class="mb-3">Таблица: Студенты</h1>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Имя</th>
+    <th>Фамилия</th>
+    <th>Пол</th>
+    <th>Дата рождения</th>
+    <th>Есть дети</th>
+    <th>Сумма стипендии</th>
+    <th>Группа</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @students.each do |student| %>
+    <tr>
+      <td><%= student.first_name %></td>
+      <td><%= student.last_name %></td>
+      <td><%= student.gender %></td>
+      <td><%= student.birth_date.strftime("%d-%m-%Y") if student.birth_date.present? %></td>
+      <td><%= student.has_children ? 'Да' : 'Нет' %></td>
+      <td><%= student.scholarship_amount %></td>
+      <td><%= student.group.name if student.group.present? %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

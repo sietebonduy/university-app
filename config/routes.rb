@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
   root to: "pages#homepage"
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  resources :theses
+  resources :topics
+  resources :exams
+  resources :curriculums
+  resources :disciplines
+  resources :teachers
+  resources :groups
+  resources :students
+  resources :departments
+  resources :faculties
 end

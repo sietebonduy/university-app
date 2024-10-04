@@ -5,8 +5,8 @@ class CreateCurriculums < ActiveRecord::Migration[6.1]
       t.references :group, foreign_key: true
       t.integer :semester
       t.integer :hours
-      t.string :class_type
-      t.string :control_form
+      t.references :control_form, foreign_key: true
+      t.references :class_type, foreign_key: true
 
       t.timestamps
     end

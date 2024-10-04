@@ -1,0 +1,2 @@
+class ControlForm < ApplicationRecord
+end

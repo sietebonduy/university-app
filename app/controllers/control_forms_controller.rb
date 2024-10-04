@@ -1,0 +1,2 @@
+class ControlFormsController < ApplicationController
+end

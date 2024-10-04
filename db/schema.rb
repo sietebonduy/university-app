@@ -15,15 +15,29 @@ ActiveRecord::Schema.define(version: 2024_09_26_210824) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "class_types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "control_forms", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "curriculums", force: :cascade do |t|
     t.bigint "discipline_id"
     t.bigint "group_id"
     t.integer "semester"
     t.integer "hours"
-    t.string "class_type"
-    t.string "control_form"
+    t.bigint "control_form_id"
+    t.bigint "class_type_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["class_type_id"], name: "index_curriculums_on_class_type_id"
+    t.index ["control_form_id"], name: "index_curriculums_on_control_form_id"
     t.index ["discipline_id"], name: "index_curriculums_on_discipline_id"
     t.index ["group_id"], name: "index_curriculums_on_group_id"
   end
@@ -118,6 +132,8 @@ ActiveRecord::Schema.define(version: 2024_09_26_210824) do
     t.index ["teacher_id"], name: "index_topics_on_teacher_id"
   end
 
+  add_foreign_key "curriculums", "class_types"
+  add_foreign_key "curriculums", "control_forms"
   add_foreign_key "curriculums", "disciplines"
   add_foreign_key "curriculums", "groups"
   add_foreign_key "departments", "faculties"

@@ -45,6 +45,6 @@ class CurriculumsController < ApplicationController
     end
 
     def curriculum_params
-      params.require(:curriculum).permit(:discipline_id, :group_id, :semester, :hours, :class_type, :control_form)
+      params.require(:curriculum).permit(:discipline_id, :group_id, :semester, :hours, :class_type_id, :control_form_id)
     end
 end

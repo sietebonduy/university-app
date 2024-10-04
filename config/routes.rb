@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :theses
   resources :topics
   resources :exams
+  resources :control_forms
+  resources :class_types
   resources :curriculums
   resources :disciplines
   resources :teachers

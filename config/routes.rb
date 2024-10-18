@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  root to: "pages#homepage"
-  get '/pages/maintainer_info' => "pages#maintainer_info"
+  root to: 'pages#homepage'
+  get '/pages/maintainer_info' => 'pages#maintainer_info'
+
+  get '/queries' => 'queries#index'
+  get '/queries/students' => 'queries#students'
 
   resources :theses
   resources :topics

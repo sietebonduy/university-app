@@ -27,6 +27,7 @@ group :development do
   gem 'rack-mini-profiler', '~> 2.0'
   gem 'listen', '~> 3.3'
   gem 'spring'
+  gem "pry", "~> 0.14.2"
 end
 
 group :test do
@@ -38,6 +39,5 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "bootstrap", "~> 5.3"
-gem "pry", "~> 0.14.2"
 
 gem "jquery-rails", "~> 4.6"

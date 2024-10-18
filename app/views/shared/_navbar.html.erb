@@ -1,16 +1,40 @@
-<div class="gradient-custom border">
-  <ul class="nav justify-content-center">
-    <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="/">Homepage</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="https://getbootstrap.com/docs/5.1/getting-started/introduction/" target="_blank">Bootstrap doc</a>
-    </li>
-<!--    <li class="nav-item">-->
-<!--      <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>-->
-<!--    </li>-->
-<!--    <li class="nav-item">-->
-<!--      <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>-->
-<!--    </li>-->
-  </ul>
-</div>
+<nav class="navbar navbar-expand-lg navbar-light gradient-custom border">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <%= image_tag 'icons/building-columns-solid.svg', class: "d-inline-block align-top", style: "width: 40px; height: 40px;" %>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <i class="fa fa-home"></i>
+          <a class="nav-link active" aria-current="page" href="/">Homepage</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://getbootstrap.com/docs/5.1/getting-started/introduction/" target="_blank">Bootstrap docs</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<style>
+    .gradient-custom {
+        background: linear-gradient(to right, #ff7e5f, #feb47b);
+        color: white;
+    }
+
+    .navbar {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-link {
+        transition: color 0.3s;
+    }
+
+    .nav-link:hover {
+        color: #ffeb3b; /* Цвет при наведении */
+    }
+</style>

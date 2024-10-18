@@ -33,7 +33,6 @@ departments = [
   { name: 'Кафедра прикладная математика', faculty_id: 2 }
 ]
 
-
 groups = [
   { name: 'АС-101', faculty_id: 1, enrollment_year: 2021 },
   { name: 'ИТ-201', faculty_id: 2, enrollment_year: 2022 },

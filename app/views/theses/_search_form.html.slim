@@ -1,0 +1,15 @@
+.row.mt-5#formContainer
+  = search_form_for @q, builder: SimpleForm::FormBuilder, wrapper: :vertical_form, html: { class: 'form-horizontal', role: 'form', method: :get }, url: queries_theses_path do |f|
+    .row
+      .col-md-8.offset-md-2
+        .card
+          .card-header.bg-primary.text-white
+            h5.mb-0 Фильтр
+          .card-body
+            .row
+              .col-md-4 = f.input :teacher_id_eq, label: 'Преподаватель:', collection: Teacher.pluck(:first_name, :id), required: false
+              .col-md-4 = f.input :student_group_faculty_id_eq, label: 'Факультет:', collection: Faculty.pluck(:name, :id), required: false
+              / todo: fix relation later
+              / .col-md-4 = f.input :student_group_faculty_id_eq, label: 'Кафедра:', collection: Department.pluck(:name, :id), required: false
+
+          .text-center.mb-4 = f.button :submit, 'Фильтровать', class: 'btn btn-primary w-25'

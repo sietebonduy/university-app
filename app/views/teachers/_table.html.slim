@@ -1,0 +1,37 @@
+.div.table
+  h1.mb-4.text-center Таблица: Преподаватели
+
+  - unless @teachers.blank?
+    .table-responsive
+      table.table.table-striped.table-bordered.table-hover
+        thead.table-dark
+          tr
+            th.text-center.align-middle ФИО
+            th.text-center.align-middle Пол
+            th.text-center.align-middle Должность
+            th.text-center.align-middle Дата рождения
+            th.text-center.align-middle Есть дети
+            th.text-center.align-middle Кол-во детей
+            th.text-center.align-middle Заработная плата
+            th.text-center.align-middle Имеет докторскую степень
+            th.text-center.align-middle Кафедра
+            th.text-center.align-middle Факультет
+        tbody
+          - @teachers.each do |teacher|
+            tr
+              td.text-center.align-middle = teacher.full_name
+              td.text-center.align-middle = teacher.gender == 'М' ? 'Мужской' : 'Женский'
+              td.text-center.align-middle = teacher.humanized_kind
+              td.text-center.align-middle = teacher.birth_date.present? ? teacher.birth_date.strftime("%d.%m.%Y") : '—'
+              td.text-center.align-middle = teacher.has_children ? 'Да' : 'Нет'
+              td.text-center.align-middle = teacher.number_of_children
+              td.text-center.align-middle = teacher.salary.present? ? number_to_currency(teacher.salary, unit: "₽", format: "%n %u") : '—'
+              td.text-center.align-middle = teacher.has_phd ? 'Да' : 'Нет'
+              td.align-middle = teacher.department.name || '—'
+              td.align-middle = teacher.faculty.name || '—'
+
+    p.text-end.fw-bold
+      | Общее количество преподавателей:
+      = @teachers.count
+  - else
+    p.mt-5.text-center.fw-bold Записи не найдены

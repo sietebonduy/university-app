@@ -1,0 +1,29 @@
+.div.table
+  h1.mb-4.text-center Таблица: Кандидатские и докторские диссертации
+
+  - unless @topics.blank?
+    .table-responsive
+      table.table.table-striped.table-bordered.table-hover
+        thead.table-dark
+          tr
+            th.text-center.align-middle Тема
+            th.text-center.align-middle Вид
+            th.text-center.align-middle Преподаватель
+            th.text-center.align-middle Кафедра
+            th.text-center.align-middle Факультет
+            th.text-center.align-middle Дата защиты
+        tbody
+          - @topics.each do |topic|
+            tr
+              td.align-middle = topic.name
+              td.text-center.align-middle = topic.humanized_kind
+              td.text-center.align-middle = topic.teacher.full_name
+              td.align-middle = topic.department.name || ''
+              td.align-middle = topic.faculty.name || ''
+              td.text-center.align-middle = topic.pass_date.present? ? topic.pass_date.strftime("%d.%m.%Y") : '—'
+
+    p.text-end.fw-bold
+      | Общее количество работ:    
+      = @topics.count
+  - else
+    p.mt-5.text-center.fw-bold Записи не найдены

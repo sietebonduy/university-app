@@ -1,0 +1,12 @@
+h1.text-center.my-4.text-info Запросы для кандидатских и докторских диссертаций
+
+.container.my-5
+  button#toggleFormButton.btn.btn-primary Показать форму
+  a.m-3 href="/queries/topics" class="btn btn-outline-secondary" role="button"
+    i.bi.bi-arrow-clockwise.d-inline-block.me-1
+    | Обновить
+
+  = render 'topics/search_form'
+
+  .mt-5
+    = render 'topics/table'

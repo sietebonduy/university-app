@@ -1,0 +1,31 @@
+div.table
+  h1.mb-4.text-center Таблица: Студенты
+
+  - unless @students.blank?
+    .table-responsive
+      table.table.table-striped.table-bordered.table-hover
+        thead.table-dark
+          tr
+            th.text-center.align-middle ФИО
+            th.text-center.align-middle Пол
+            th.text-center.align-middle Дата рождения
+            th.text-center.align-middle Есть дети
+            th.text-center.align-middle Сумма стипендии
+            th.text-center.align-middle Группа
+            th.text-center.align-middle Факультет
+        tbody
+          - @students.each do |student|
+            tr
+              td.text-center.align-middle = student.full_name
+              td.text-center.align-middle = student.gender == 'male' ? 'Мужской' : 'Женский'
+              td.text-center.align-middle = student.birth_date.present? ? student.birth_date.strftime("%d-%m-%Y") : '—'
+              td.text-center.align-middle = student.has_children ? 'Да' : 'Нет'
+              td.text-center.align-middle = student.scholarship_amount.present? ? number_to_currency(student.scholarship_amount, unit: "₽", format: "%n %u") : '—'
+              td.text-center.align-middle = student.group.name || '—'
+              td.align-middle = student.faculty.name || '—'
+
+    p.text-end.fw-bold
+      | Общее количество студентов:
+      = @students.count
+  - else
+    p.mt-5.text-center.fw-bold Записи не найдены

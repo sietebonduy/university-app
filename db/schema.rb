@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_10_18_132842) do
+ActiveRecord::Schema.define(version: 2024_10_23_210525) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,6 +80,9 @@ ActiveRecord::Schema.define(version: 2024_10_18_132842) do
     t.integer "enrollment_year"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "course"
+    t.bigint "department_id"
+    t.index ["department_id"], name: "index_groups_on_department_id"
     t.index ["faculty_id"], name: "index_groups_on_faculty_id"
   end
 
@@ -104,13 +107,13 @@ ActiveRecord::Schema.define(version: 2024_10_18_132842) do
     t.date "birth_date"
     t.boolean "has_children"
     t.decimal "salary", precision: 10, scale: 2
-    t.string "category"
     t.boolean "has_phd"
-    t.boolean "has_doctorate"
     t.bigint "department_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "patronymic"
+    t.integer "number_of_children", default: 0
+    t.integer "kind", default: 0
     t.index ["department_id"], name: "index_teachers_on_department_id"
   end
 
@@ -120,6 +123,7 @@ ActiveRecord::Schema.define(version: 2024_10_18_132842) do
     t.bigint "teacher_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.date "pass_date"
     t.index ["student_id"], name: "index_theses_on_student_id"
     t.index ["teacher_id"], name: "index_theses_on_teacher_id"
   end
@@ -130,6 +134,8 @@ ActiveRecord::Schema.define(version: 2024_10_18_132842) do
     t.bigint "department_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.date "pass_date"
+    t.integer "kind", default: 0
     t.index ["department_id"], name: "index_topics_on_department_id"
     t.index ["teacher_id"], name: "index_topics_on_teacher_id"
   end
@@ -141,6 +147,7 @@ ActiveRecord::Schema.define(version: 2024_10_18_132842) do
   add_foreign_key "departments", "faculties"
   add_foreign_key "exams", "disciplines"
   add_foreign_key "exams", "students"
+  add_foreign_key "groups", "departments"
   add_foreign_key "groups", "faculties"
   add_foreign_key "students", "groups"
   add_foreign_key "teachers", "departments"

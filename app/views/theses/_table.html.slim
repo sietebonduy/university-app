@@ -1,0 +1,30 @@
+.div.table
+  h1.mb-4.text-center Таблица: Дипломы
+
+  - unless @theses.blank?
+    .table-responsive
+      table.table.table-striped.table-bordered.table-hover
+        thead.table-dark
+          tr
+            th.text-center.align-middle Тема
+            th.text-center.align-middle Студент
+            th.text-center.align-middle Преподаватель
+            th.text-center.align-middle Кафедра
+            th.text-center.align-middle Факультет
+            th.text-center.align-middle Дата защиты
+        tbody
+          - @theses.each do |thesis|
+            tr
+              td.align-middle = thesis.title
+              td.text-center.align-middle = thesis.student.full_name
+              td.text-center.align-middle = thesis.teacher.full_name
+              / todo: fix relation
+              td.align-middle = thesis.student.department&.name || ''
+              td.align-middle = thesis.student.faculty.name || ''
+              td.text-center.align-middle = thesis.pass_date.present? ? thesis.birth_date.strftime("%d.%m.%Y") : '—'
+
+    p.text-end.fw-bold
+      | Общее количество работ:
+      = @theses.count
+  - else
+    p.mt-5.text-center.fw-bold Записи не найдены

@@ -1,0 +1,29 @@
+.row.mt-5#formContainer
+  = search_form_for @q, builder: SimpleForm::FormBuilder, wrapper: :vertical_form, html: { class: 'form-horizontal', role: 'form', method: :get }, url: queries_teachers_path do |f|
+    .row
+      .col-md-8.offset-md-2
+        .card
+          .card-header.bg-primary.text-white
+            h5.mb-0 Фильтр преподавателей
+          .card-body
+            .row
+              .col-md-4 = f.input :last_name_cont, label: 'Фамилия:', required: false
+              .col-md-4 = f.input :first_name_cont, label: 'Имя:', required: false
+              .col-md-4= f.input :patronymic_cont, label: 'Отчество:', required: false
+            .row.mt-4
+              .col-md-4 = f.input :gender_eq, label: 'Пол:', required: false, collection: [['Мужской', 'М'], ['Женский', 'Ж']]
+              .col-md-4 = f.input :birth_date_eq, label: 'Дата рождения:', required: false, input_html: { type: 'date' }
+              .col-md-4 = f.input :has_children_eq, label: 'Есть дети?', collection: [['Да', true], ['Нет', false]], required: false
+            .row.mt-4
+              .col-md-4 = f.input :department_faculty_id_eq, label: 'Факультет:', collection: Faculty.pluck(:name, :id), required: false
+              .col-md-4 = f.input :department_id_eq, label: 'Кафедра:', collection: Department.pluck(:name, :id), required: false
+              .col-md-4 = f.input :kind_eq, label: 'Должность:', collection: Teacher.humanized_kinds, required: false
+            .row.mt-4
+              .col-md-4 = f.input :salary_gteq, label: 'Минимальный размер зарплаты:', required: false
+              .col-md-4 = f.input :number_of_children_eq, label: 'Количество детей:', required: false
+              .col-md-4 = f.input :has_phd_eq, label: 'Защитил кандидатскую?', collection: [['Да', true], ['Нет', false]], required: false
+            .row.mt-4
+              .col-md-3 = f.input :topic_pass_date_lteq, label: 'От', required: false, input_html: { type: 'date' }
+              .col-md-3 = f.input :topic_pass_date_gteq, label: 'До', required: false, input_html: { type: 'date' }
+
+          .text-center.mb-4 = f.button :submit, 'Фильтровать', class: 'btn btn-primary w-25'

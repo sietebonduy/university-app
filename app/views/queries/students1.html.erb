@@ -1,0 +1,85 @@
+<!--<h1 class="text-center my-4 text-info">Запросы студентов</h1>-->
+
+<!--<div class="container my-5">-->
+<!--  <button id="toggleFormButton" class="btn btn-primary mb-3">-->
+<!--    <i class="fas fa-plus-circle"></i> Показать форму-->
+<!--  </button>-->
+
+<!--  <a class="m-3" href="/queries/students">-->
+    <%#= image_tag 'icons/arrows-rotate-solid.svg', class: "d-inline-block align-top", style: "width: 20px; height: 20px;" %>
+<!--  </a>-->
+
+<!--  <div id="formContainer" class="p-4 border rounded shadow-sm bg-light d-none">-->
+    <%#= form_with class: 'mb-4', method: :get, local: true do |form| %>
+<!--      <h3 class="mb-4 text-center text-success">Поиск студентов</h3>-->
+
+<!--      <div class="row mb-4">-->
+<!--        <div class="col-md-6">-->
+<!--          <div class="row mb-3">-->
+<!--            <div class="col-6">-->
+              <%#= form.label :first_name, "Имя", class: 'form-label mb-0' %>
+              <%#= form.text_field :first_name, placeholder: "Введите имя", value: @search_params[:first_name], class: 'form-control' %>
+<!--            </div>-->
+<!--            <div class="col-6">-->
+              <%#= form.label :last_name, "Фамилия", class: 'form-label mb-0' %>
+              <%#= form.text_field :last_name, placeholder: "Введите фамилию", value: @search_params[:last_name], class: 'form-control' %>
+<!--            </div>-->
+<!--          </div>-->
+
+<!--          <div class="row mb-3">-->
+<!--            <div class="col-6">-->
+              <%#= form.label :birth_date, "Дата рождения", class: 'form-label mb-0' %>
+              <%#= form.text_field :birth_date, class: 'form-control datepicker', placeholder: "Выберите дату", value: @search_params[:birth_date] %>
+<!--            </div>-->
+<!--            <div class="col-6">-->
+              <%#= form.label :gender, "Пол", class: 'form-label mb-0' %>
+              <%#= form.select :gender, options_for_select([['Мужской', 'male'], ['Женский', 'female']], @search_params[:gender]), { include_blank: "Не выбрано" }, { class: 'form-select' } %>
+<!--            </div>-->
+<!--          </div>-->
+
+<!--          <div class="row mb-3">-->
+<!--            <div class="col-6">-->
+              <%#= form.label :group_id, "Группа", class: 'form-label mb-0' %>
+              <%#= form.collection_select :group_id, Group.order(:name), :id, :name, { include_blank: "Выберите группу", selected: @search_params[:group_id] }, { class: 'form-select' } %>
+<!--            </div>-->
+<!--            <div class="col-6">-->
+              <%#= form.label :faculty_id, "Факультет", class: 'form-label mb-0' %>
+              <%#= form.collection_select :faculty_id, Faculty.order(:name), :id, :name, { include_blank: "Выберите факультет", selected: @search_params[:faculty_id] }, { class: 'form-select' } %>
+<!--            </div>-->
+<!--          </div>-->
+
+<!--          <div class="row mb-3">-->
+<!--            <div class="col-6">-->
+              <%#= form.label :course, "Курс", class: 'form-label mb-0' %>
+              <%#= form.select :course, options_for_select((1..6).to_a, @search_params[:course]), { include_blank: "Выберите курс" }, { class: 'form-select' } %>
+<!--            </div>-->
+<!--            <div class="col-6">-->
+              <%#= form.label :scholarship_amount, "Минимальный размер стипендии", class: 'form-label mb-0' %>
+              <%#= form.number_field :scholarship_amount, step: 100, class: 'form-control', placeholder: "Введите сумму", value: @search_params[:scholarship_amount] %>
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+
+<!--        <div class="col-md-6">-->
+<!--          <div class="form-check d-flex align-items-center mb-3">-->
+            <%#= form.check_box :has_children, class: 'form-check-input', checked: @search_params[:has_children] == '1' %>
+            <%#= form.label :has_children, "Есть дети?", class: 'form-check-label ms-2' %>
+<!--          </div>-->
+
+<!--          <div class="form-check d-flex align-items-center mb-3">-->
+            <%#= form.check_box :has_scholarship_amount, class: 'form-check-input', checked: @search_params[:has_scholarship_amount] == '1' %>
+            <%#= form.label :has_scholarship_amount, "Получает стипендию?", class: 'form-check-label ms-2' %>
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+
+<!--      <div class="text-center">-->
+        <%#= form.submit 'Отправить', class: 'btn btn-success' %>
+<!--      </div>-->
+    <%# end %>
+<!--  </div>-->
+<!--</div>-->
+
+<!--<div class="container my-5">-->
+  <%#= render 'students/table' %>
+<!--</div>-->

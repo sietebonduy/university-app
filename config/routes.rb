@@ -4,6 +4,9 @@ Rails.application.routes.draw do
 
   get '/queries' => 'queries#index'
   get '/queries/students' => 'queries#students'
+  get '/queries/teachers' => 'queries#teachers'
+  get '/queries/topics' => 'queries#topics'
+  get '/queries/theses' => 'queries#theses'
 
   resources :theses
   resources :topics

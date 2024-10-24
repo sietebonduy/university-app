@@ -1,1 +1,6 @@
 @import "bootstrap";
+
+.simple-form-label {
+  display: block; /* Убедитесь, что метка отображается как блочный элемент */
+  margin-bottom: 0.5rem; /* Отступ между меткой и полем ввода */
+}

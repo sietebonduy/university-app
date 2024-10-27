@@ -12,6 +12,7 @@
             th.text-center.align-middle Кафедра
             th.text-center.align-middle Факультет
             th.text-center.align-middle Дата защиты
+            th.text-center.align-middle Действия
         tbody
           - @topics.each do |topic|
             tr
@@ -21,6 +22,12 @@
               td.align-middle = topic.department.name || ''
               td.align-middle = topic.faculty.name || ''
               td.text-center.align-middle = topic.pass_date.present? ? topic.pass_date.strftime("%d.%m.%Y") : '—'
+              td.align-middle
+                .d-flex.flex-column.align-items-center
+                  = link_to 'Показать', topic_path(topic), class: 'btn btn-info btn-sm mb-2', style: 'width: 100%;'
+                  = link_to 'Редактировать', edit_topic_path(topic), class: 'btn btn-warning btn-sm mb-2', style: 'width: 100%;'
+                  = link_to 'Удалить', topic_path(topic), method: :delete, data: { confirm: 'Вы уверены, что хотите удалить этот элемент?' }, class: 'btn btn-danger btn-sm', style: 'width: 100%;'
+
 
     p.text-end.fw-bold
       | Общее количество работ:    

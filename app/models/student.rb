@@ -3,6 +3,8 @@ class Student < ApplicationRecord
   delegate :faculty, to: :group
   delegate :department, to: :group
 
+  scope :graduated, -> { where(graduated: true) }
+
   # scope :by_first_name, ->(first_name) { where('first_name ILIKE ?', "%#{first_name}%") if first_name.present? }
   # scope :by_last_name, ->(last_name) { where('last_name ILIKE ?', "%#{last_name}%") if last_name.present? }
   # scope :born_on, ->(date) { where('birth_date = ?', date) if date.present? }
@@ -20,15 +22,15 @@ class Student < ApplicationRecord
     "#{last_name} #{first_name} #{patronymic}"
   end
 
+  def has_scholarship
+    scholarship_amount > 0
+  end
+
   def self.ransackable_attributes(auth_object = nil)
     ["birth_date", "created_at", "first_name", "gender", "group_id", "has_children", "id", "last_name", "patronymic", "scholarship_amount", "updated_at", 'has_scholarship']
   end
 
   def self.ransackable_associations(auth_object = nil)
     ["group"]
-  end
-
-  def has_scholarship
-    scholarship_amount > 0
   end
 end

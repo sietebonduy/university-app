@@ -1,9 +1,18 @@
-.container.my-4
-  .row.text-center.mb-3
+.container.my-5
+  .row.text-center.mb-4
     .col
-      = link_to 'Информация об авторе', pages_maintainer_info_path, class: 'btn btn-outline-primary'
+      = link_to 'Информация об авторе', pages_maintainer_info_path, class: 'btn btn-outline-primary btn-lg'
     .col
-      = link_to 'Все запросы', queries_path, class: 'btn btn-outline-primary'
-  hr
-  .text-center
-    = link_to 'Таблица Студенты', students_path, class: 'btn btn-success'
+      = link_to 'Все запросы', queries_path, class: 'btn btn-outline-primary btn-lg'
+
+  hr.my-4
+
+  .row.justify-content-center
+    .col-md-6
+      .card.shadow-lg
+        .card-body.text-center
+          h4.mb-4.text-success Выберите таблицу
+          = link_to 'Студенты', students_path, class: 'btn btn-success btn-lg btn-block mb-3 w-75'
+          = link_to 'Преподаватели', teachers_path, class: 'btn btn-success btn-lg btn-block mb-3 w-75'
+          = link_to 'Дипломы', theses_path, class: 'btn btn-success btn-lg btn-block mb-3 w-75'
+          = link_to 'Научные работы', topics_path, class: 'btn btn-success btn-lg btn-block mb-3 w-75'

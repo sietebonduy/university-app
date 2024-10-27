@@ -45,6 +45,6 @@ class TeachersController < ApplicationController
     end
 
     def teacher_params
-      params.require(:teacher).permit(:first_name, :last_name, :gender, :birth_date, :has_children, :salary, :salary, :category, :has_phd, :has_doctorate, :department_id)
+      params.require(:teacher).permit(:first_name, :last_name, :patronymic, :gender, :birth_date, :has_children, :salary, :salary, :category, :has_phd, :department_id, :number_of_children).merge(kind: params[:teacher][:kind].to_i)
     end
 end

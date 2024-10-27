@@ -1,0 +1,17 @@
+.mb-4
+  - if params[:action] == 'edit'
+    h1 Редактирование данных дипломных работ №#{@thesis.id}
+  - else
+    h1 Добавление новой записи
+
+= simple_form_for @thesis do |f|
+  .field
+    = f.input :title, label: "Тема:"
+  .field
+    = f.input :student_id, label: "Студент:", collection: Student.all.map { |s| [s.full_name, s.id]}
+  .field
+    = f.input :teacher_id, label: "Преподаватель:", collection: Teacher.all.map { |t| [t.full_name, t.id]}
+  .field
+    = f.input :pass_date, label: "Дата защиты:", as: :date
+  .actions
+    = f.submit "Отправить"

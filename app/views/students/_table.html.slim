@@ -14,6 +14,7 @@ div.table
             th.text-center.align-middle Группа
             th.text-center.align-middle Курс
             th.text-center.align-middle Факультет
+            th.text-center.align-middle Действия
         tbody
           - @students.each do |student|
             tr
@@ -25,6 +26,11 @@ div.table
               td.text-center.align-middle = student.group.name || '—'
               td.text-center.align-middle = student.group.course || '—'
               td.align-middle = student.faculty.name || '—'
+              td.align-middle
+                .d-flex.flex-column.align-items-center
+                  = link_to 'Показать', student_path(student), class: 'btn btn-info btn-sm mb-2', style: 'width: 100%;'
+                  = link_to 'Редактировать', edit_student_path(student), class: 'btn btn-warning btn-sm mb-2', style: 'width: 100%;'
+                  = link_to 'Удалить', student_path(student), method: :delete, data: { confirm: 'Вы уверены, что хотите удалить этот элемент?' }, class: 'btn btn-danger btn-sm', style: 'width: 100%;'
 
     p.text-end.fw-bold
       | Общее количество студентов:

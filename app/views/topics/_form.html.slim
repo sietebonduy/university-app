@@ -1,0 +1,19 @@
+.mb-4
+  - if params[:action] == 'edit'
+    h1 Редактирование данных научной работы №#{@topic.id}
+  - else
+    h1 Добавление новой записи
+
+= simple_form_for @topic do |f|
+  .field
+    = f.input :name, label: "Тема:"
+  .field
+    = f.input :teacher_id, label: "Преподаватель:", collection: Teacher.all.map { |t| [t.full_name, t.id]}
+  .field
+    = f.input :kind, label: "Тип работы:", collection: Topic.humanized_kinds, selected: Topic.kinds[@topic.kind]
+  .field
+    = f.input :department_id, label: "Кафедра:", collection: Department.all.map { |d| [d.name, d.id]}
+  .field
+    = f.input :pass_date, label: "Дата защиты:", as: :date
+  .actions
+    = f.submit "Отправить"

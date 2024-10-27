@@ -45,6 +45,6 @@ class TopicsController < ApplicationController
     end
 
     def topic_params
-      params.require(:topic).permit(:name, :teacher_id, :department_id)
+      params.require(:topic).permit(:name, :teacher_id, :department_id, :kind, :pass_date).merge(kind: params[:topic][:kind].to_i)
     end
 end

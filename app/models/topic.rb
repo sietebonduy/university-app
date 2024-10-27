@@ -11,6 +11,10 @@ class Topic < ApplicationRecord
     KIND_LABELS[kind.to_sym] || 'Неизвестно'
   end
 
+  def self.humanized_kinds
+    kinds.keys.map { |k| [KIND_LABELS[k.to_sym], kinds[k]] }
+  end
+
   def self.ransackable_attributes(auth_object = nil)
     ['pass_date', 'department_id']
   end

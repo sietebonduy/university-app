@@ -12,16 +12,22 @@
             th.text-center.align-middle Кафедра
             th.text-center.align-middle Факультет
             th.text-center.align-middle Дата защиты
+            th.text-center.align-middle Действия
         tbody
           - @theses.each do |thesis|
             tr
               td.align-middle = thesis.title
               td.text-center.align-middle = thesis.student.full_name
               td.text-center.align-middle = thesis.teacher.full_name
-              / todo: fix relation
-              td.align-middle = thesis.student.department&.name || ''
+              td.align-middle = thesis.student.department.name || ''
               td.align-middle = thesis.student.faculty.name || ''
-              td.text-center.align-middle = thesis.pass_date.present? ? thesis.birth_date.strftime("%d.%m.%Y") : '—'
+              td.text-center.align-middle = thesis.pass_date.present? ? thesis.pass_date.strftime("%d.%m.%Y") : '—'
+              td.align-middle
+                .d-flex.flex-column.align-items-center
+                  = link_to 'Показать', thesis_path(thesis), class: 'btn btn-info btn-sm mb-2', style: 'width: 100%;'
+                  = link_to 'Редактировать', edit_thesis_path(thesis), class: 'btn btn-warning btn-sm mb-2', style: 'width: 100%;'
+                  = link_to 'Удалить', thesis_path(thesis), method: :delete, data: { confirm: 'Вы уверены, что хотите удалить этот элемент?' }, class: 'btn btn-danger btn-sm', style: 'width: 100%;'
+
 
     p.text-end.fw-bold
       | Общее количество работ:

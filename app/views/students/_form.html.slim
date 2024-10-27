@@ -1,0 +1,25 @@
+- if params[:action] == 'edit'
+  h1 Редактирование данных студента №#{@student.id}
+- else
+  h1 Добавление новой записи
+
+
+= simple_form_for @student do |f|
+  .field
+    = f.input :first_name, label: "Имя:"
+  .field
+    = f.input :last_name, label: "Фамилия:"
+  .field
+    = f.input :patronymic, label: "Отчество:"
+  .field
+    = f.input :gender, label: "Пол:", collection: [['Мужской', 'male'], ['Женский', 'female']]
+  .field
+    = f.input :birth_date, label: "Дата рождения:", as: :date
+  .field
+    = f.input :has_children, label: "Есть дети?", as: :boolean
+  .field
+    = f.input :scholarship_amount, label: "Размер стипендии:", step: 0.01
+  .field
+    = f.input :group_id, label: "Группа:", collection: Group.all, prompt: 'Select Group'
+  .actions
+    = f.submit "Отправить"

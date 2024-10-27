@@ -1,0 +1,31 @@
+.mb-4
+  - if params[:action] == 'edit'
+    h1 Редактирование данных преподавателя №#{@teacher.id}
+  - else
+    h1 Добавление новой записи
+
+= simple_form_for @teacher do |f|
+  .field
+    = f.input :first_name, label: "Имя:"
+  .field
+    = f.input :last_name, label: "Фамилия:"
+  .field
+    = f.input :patronymic, label: "Отчество:"
+  .field
+    = f.input :kind, label: "Должность:", collection: Teacher.humanized_kinds, selected: Teacher.kinds[@teacher.kind]
+  .field
+    = f.input :gender, label: "Пол:", collection: [['Мужской', 'male'], ['Женский', 'female']]
+  .field
+    = f.input :birth_date, label: "Дата рождения:", as: :date
+  .field
+    = f.input :has_children, label: "Есть дети?", as: :boolean
+  .field
+    = f.input :number_of_children, label: "Кол-во детей:", as: :integer
+  .field
+    = f.input :salary, label: "Размер зарплаты:", step: 0.01
+  .field
+    = f.input :has_phd, label: "Имеет докторскую степень?", as: :boolean
+  .field
+    = f.input :department_id, label: "Кафедра:", collection: Department.all, prompt: 'Выберите кафедру'
+  .actions
+    = f.submit "Отправить"

@@ -1,0 +1,46 @@
+= link_to 'Назад к списку преподавателей', teachers_path, class: 'btn btn-secondary mb-5'
+
+div.container
+  .row.mb-4
+    .col-md-8.offset-md-2
+      .card.shadow
+        .card-header.bg-primary.text-white
+          h5 Информация о преподавателе
+        .card-body
+          .list-group
+            .list-group-item
+              strong ФИО:
+              | #{ @teacher.full_name }
+            .list-group-item
+              strong Пол:
+              | #{ @teacher.gender == 'male' ? 'Мужской' : 'Женский' }
+            .list-group-item
+              strong Должность:
+              | #{ @teacher.humanized_kind }
+            .list-group-item
+              strong Дата рождения:
+              | #{@teacher.birth_date.present? ? @teacher.birth_date.strftime("%d-%m-%Y") : 'Не указана'}
+            .list-group-item
+              strong Есть дети:
+              | #{@teacher.has_children ? 'Да' : 'Нет'}
+            .list-group-item
+              strong Кол-во детей:
+              | #{@teacher.number_of_children}
+            .list-group-item
+              strong Сумма зарплаты:
+              | #{@teacher.salary.present? ? number_to_currency(@teacher.salary, unit: "₽", format: "%n %u") : 'Не указана'}
+            .list-group-item
+              strong Имеет докторскую степень:
+              | #{@teacher.has_phd ? 'Да' : 'Нет'}
+            .list-group-item
+              strong Кафедра:
+              | #{@teacher.department.name || 'Не указана'}
+            .list-group-item
+              strong Факультет:
+              | #{@teacher.faculty.name || 'Не указана'}
+
+      .text-center.mt-4
+        = link_to 'Редактировать', edit_teacher_path(@teacher), class: 'btn btn-warning btn-lg me-2'
+        = link_to 'Удалить', @teacher, method: :delete, data: { confirm: 'Вы уверены, что хотите удалить этот элемент?' }, class: 'btn btn-danger btn-lg'
+
+

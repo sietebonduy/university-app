@@ -12,6 +12,7 @@ div.table
             th.text-center.align-middle Есть дети
             th.text-center.align-middle Сумма стипендии
             th.text-center.align-middle Группа
+            th.text-center.align-middle Курс
             th.text-center.align-middle Факультет
         tbody
           - @students.each do |student|
@@ -22,6 +23,7 @@ div.table
               td.text-center.align-middle = student.has_children ? 'Да' : 'Нет'
               td.text-center.align-middle = student.scholarship_amount.present? ? number_to_currency(student.scholarship_amount, unit: "₽", format: "%n %u") : '—'
               td.text-center.align-middle = student.group.name || '—'
+              td.text-center.align-middle = student.group.course || '—'
               td.align-middle = student.faculty.name || '—'
 
     p.text-end.fw-bold

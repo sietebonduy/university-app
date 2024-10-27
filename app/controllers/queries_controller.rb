@@ -37,4 +37,9 @@ class QueriesController < ApplicationController
     @q = Thesis.ransack(params[:q])
     @theses = @q.result(distinct: true)
   end
+
+  def thesis_advisors
+    @q = Teacher.thesis_advisors.ransack(params[:q])
+    @teachers = @q.result(distinct: true)
+  end
 end

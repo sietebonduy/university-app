@@ -9,7 +9,6 @@
             .row
               .col-md-4 = f.input :teacher_id_eq, label: 'Преподаватель:', collection: Teacher.pluck(:first_name, :id), required: false
               .col-md-4 = f.input :student_group_faculty_id_eq, label: 'Факультет:', collection: Faculty.pluck(:name, :id), required: false
-              / todo: fix relation later
-              / .col-md-4 = f.input :student_group_faculty_id_eq, label: 'Кафедра:', collection: Department.pluck(:name, :id), required: false
+              .col-md-4 = f.input :student_group_faculty_id_eq, label: 'Кафедра:', collection: Department.pluck(:name, :id), required: false
 
           .text-center.mb-4 = f.button :submit, 'Фильтровать', class: 'btn btn-primary w-25'

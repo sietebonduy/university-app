@@ -7,6 +7,8 @@ class Teacher < ApplicationRecord
 
   enum kind: { assistant: 0, associate_professor: 1, professor: 2, senior_lecturer: 3 }
 
+  scope :thesis_advisors, -> { where("EXISTS (SELECT 1 FROM theses WHERE theses.teacher_id = teachers.id)") }
+
   def full_name
     "#{last_name} #{first_name} #{patronymic}"
   end

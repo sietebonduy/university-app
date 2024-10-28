@@ -4,6 +4,7 @@ class Teacher < ApplicationRecord
   belongs_to :department
   has_one :faculty, through: :department
   has_many :topic
+  has_many :exams
 
   enum kind: { assistant: 0, associate_professor: 1, professor: 2, senior_lecturer: 3 }
 

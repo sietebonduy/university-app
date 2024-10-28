@@ -1,0 +1,31 @@
+= link_to 'Назад к списку оценок', exams_path, class: 'btn btn-secondary mb-5'
+
+div.container
+  .row.mb-4
+    .col-md-8.offset-md-2
+      .card.shadow
+        .card-header.bg-primary.text-white
+          h5 Информация о оценках
+        .card-body
+          .list-group
+            .list-group-item
+              strong Студент:
+              | #{ @exam.student.full_name }
+            .list-group-item
+              strong Предмет:
+              | #{@exam.discipline.name}
+            .list-group-item
+              strong Преподаватель:
+              | #{ @exam.teacher.full_name }
+            .list-group-item
+              strong Оценка:
+              | #{@exam.grade}
+            .list-group-item
+              strong Семестр:
+              | #{@exam.semester}
+
+      .text-center.mt-4
+        = link_to 'Редактировать', edit_exam_path(@exam), class: 'btn btn-warning btn-lg me-2'
+        = link_to 'Удалить', @exam, method: :delete, data: { confirm: 'Вы уверены, что хотите удалить этот элемент?' }, class: 'btn btn-danger btn-lg'
+
+

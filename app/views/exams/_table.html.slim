@@ -1,0 +1,35 @@
+.div.table
+  h1.mb-4.text-center Таблица: Оценки
+
+  - unless @exams.blank?
+    .table-responsive
+      table.table.table-striped.table-bordered.table-hover
+        thead.table-dark
+          tr
+            th.text-center.align-middle Студент
+            th.text-center.align-middle Предмет
+            th.text-center.align-middle Преподаватель
+            th.text-center.align-middle Оценка
+            th.text-center.align-middle Семестр
+            th.text-center.align-middle Действия
+        tbody
+          - @exams.each do |exam|
+            tr
+              td.text-center.align-middle = exam.student.full_name
+              td.text-center.align-middle = exam.discipline.name
+              / todo: fix relation
+              td.text-center.align-middle = exam.teacher&.full_name
+              td.text-center.align-middle = exam.grade
+              td.text-center.align-middle = exam.semester
+              td.align-middle
+                .d-flex.flex-column.align-items-center
+                  = link_to 'Показать', exam_path(exam), class: 'btn btn-info btn-sm mb-2', style: 'width: 100%;'
+                  = link_to 'Редактировать', edit_exam_path(exam), class: 'btn btn-warning btn-sm mb-2', style: 'width: 100%;'
+                  = link_to 'Удалить', exam_path(exam), method: :delete, data: { confirm: 'Вы уверены, что хотите удалить этот элемент?' }, class: 'btn btn-danger btn-sm', style: 'width: 100%;'
+
+
+    p.text-end.fw-bold
+      | Общее количество оценок:
+      = @exams.count
+  - else
+    p.mt-5.text-center.fw-bold Записи не найдены

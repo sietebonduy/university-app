@@ -1,17 +1,19 @@
 .mb-4.text-center
   - if params[:action] == 'edit'
-    h1 Редактирование данных дипломных работ №#{@thesis.id}
+    h1 Редактирование данных оценок №#{@exam.id}
   - else
     h1 Добавление новой записи
 
-= simple_form_for @thesis do |f|
-  .field
-    = f.input :title, label: "Тема:"
+= simple_form_for @exam do |f|
   .field
     = f.input :student_id, label: "Студент:", collection: Student.all.map { |s| [s.full_name, s.id]}
   .field
+    = f.input :discipline_id, label: "Предмет:", collection: Discipline.all.map { |d| [d.name, d.id]}
+  .field
     = f.input :teacher_id, label: "Преподаватель:", collection: Teacher.all.map { |t| [t.full_name, t.id]}
   .field
-    = f.input :pass_date, label: "Дата защиты:", as: :date
+    = f.input :grade, label: "Оценка:"
+  .field
+    = f.input :semester, label: "Семестр:"
   .actions
     = f.submit "Отправить"

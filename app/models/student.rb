@@ -1,5 +1,6 @@
 class Student < ApplicationRecord
   belongs_to :group
+  has_many :exams, dependent: :destroy
   delegate :faculty, to: :group
   delegate :department, to: :group
 

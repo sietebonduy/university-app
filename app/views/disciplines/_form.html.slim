@@ -1,0 +1,11 @@
+.mb-4
+  - if params[:action] == 'edit'
+    h1 Редактирование данных предмета №#{@discipline.id}
+  - else
+    h1 Добавление новой записи
+
+= simple_form_for @discipline do |f|
+  .field
+    = f.input :name, label: "Название:"
+  .actions
+    = f.submit "Отправить"

@@ -1,0 +1,21 @@
+.mb-4.text-center
+  - if params[:action] == 'edit'
+    h1 Редактирование данных группы №#{@group.id}
+  - else
+    h1 Добавление новой записи
+
+= simple_form_for @group do |f|
+  .field
+    = f.input :name, label: "Название:"
+  .field
+    = f.input :faculty_id, label: "Факультет:", collection: Faculty.all.map { |x| [x.name, x.id] }
+  .field
+    = f.input :department_id, label: "Кафедра:", collection: Department.all.map { |d| [d.name, d.id] }
+  .field
+    = f.input :enrollment_year, label: "Год поступления:"
+  .field
+    = f.input :course, label: "Курс:"
+  .field
+    = f.input :graduated, label: "Выпустились?", as: :boolean
+  .actions
+    = f.submit "Отправить"

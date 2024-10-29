@@ -45,6 +45,6 @@ class GroupsController < ApplicationController
     end
 
     def group_params
-      params.require(:group).permit(:name, :faculty_id, :enrollment_year)
+      params.require(:group).permit(:name, :faculty_id, :department_id, :enrollment_year, :course, :graduated)
     end
 end

@@ -2,6 +2,7 @@ class Group < ApplicationRecord
   belongs_to :faculty
   belongs_to :department
   has_many :students
+  has_many :curriculums
 
   enum course: { '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8}
 

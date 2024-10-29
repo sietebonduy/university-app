@@ -1,0 +1,35 @@
+.div.table
+  h1.mb-4.text-center Таблица: Группы
+
+  - unless @groups.blank?
+    .table-responsive
+      table.table.table-striped.table-bordered.table-hover
+        thead.table-dark
+          tr
+            th.text-center.align-middle Название
+            th.text-center.align-middle Факультет
+            th.text-center.align-middle Кафедра
+            th.text-center.align-middle Год поступления
+            th.text-center.align-middle Курс
+            th.text-center.align-middle Выпустились?
+            th.text-center.align-middle Действия
+        tbody
+          - @groups.each do |group|
+            tr
+              td.text-center.align-middle = group.name
+              td.align-middle = group.faculty.name
+              td.align-middle = group.department.name
+              td.text-center.align-middle = group.enrollment_year
+              td.text-center.align-middle = group.course
+              td.text-center.align-middle = group.graduated ? 'Да' : 'Нет'
+              td.align-middle
+                .d-flex.flex-column.align-items-center
+                  = link_to 'Показать', group_path(group), class: 'btn btn-info btn-sm mb-2', style: 'width: 100%;'
+                  = link_to 'Редактировать', edit_group_path(group), class: 'btn btn-warning btn-sm mb-2', style: 'width: 100%;'
+                  = link_to 'Удалить', group_path(group), method: :delete, data: { confirm: 'Вы уверены, что хотите удалить этот элемент?' }, class: 'btn btn-danger btn-sm', style: 'width: 100%;'
+
+    p.text-end.fw-bold
+      | Общее количество типов занятий:
+      = @groups.count
+  - else
+    p.mt-5.text-center.fw-bold Записи не найдены

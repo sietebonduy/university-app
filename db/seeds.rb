@@ -173,16 +173,16 @@ topics = [
 ]
 
 exams = [
-  { student_id: 1, discipline_id: 1, grade: 5, semester: 1 },
-  { student_id: 2, discipline_id: 2, grade: 4, semester: 1 },
-  { student_id: 3, discipline_id: 3, grade: 3, semester: 2 },
-  { student_id: 4, discipline_id: 4, grade: 5, semester: 2 },
-  { student_id: 5, discipline_id: 5, grade: 4, semester: 3 },
-  { student_id: 6, discipline_id: 6, grade: 5, semester: 1 },
-  { student_id: 7, discipline_id: 7, grade: 3, semester: 2 },
-  { student_id: 8, discipline_id: 8, grade: 4, semester: 3 },
-  { student_id: 9, discipline_id: 9, grade: 5, semester: 1 },
-  { student_id: 10, discipline_id: 10, grade: 4, semester: 2 }
+  { student_id: 1, discipline_id: 1, teacher_id: 1, grade: 5, semester: 1 },
+  { student_id: 2, discipline_id: 2, teacher_id: 1, grade: 4, semester: 1 },
+  { student_id: 3, discipline_id: 3, teacher_id: 1, grade: 3, semester: 2 },
+  { student_id: 4, discipline_id: 4, teacher_id: 1, grade: 5, semester: 2 },
+  { student_id: 5, discipline_id: 5, teacher_id: 1, grade: 4, semester: 3 },
+  { student_id: 6, discipline_id: 6, teacher_id: 1, grade: 5, semester: 1 },
+  { student_id: 7, discipline_id: 7, teacher_id: 1, grade: 3, semester: 2 },
+  { student_id: 8, discipline_id: 8, teacher_id: 1, grade: 4, semester: 3 },
+  { student_id: 9, discipline_id: 9, teacher_id: 1, grade: 5, semester: 1 },
+  { student_id: 10, discipline_id: 10, teacher_id: 1, grade: 4, semester: 2 }
 ]
 
 class_types = [
@@ -219,7 +219,7 @@ curriculums = [
 # Teacher.create!(teachers)
 # Thesis.create!(theses)
 # Topic.create!(topics)
-Exam.create!(exams)
+# Exam.create!(exams)
 # ClassType.create!(class_types)
 # ControlForm.create!(control_forms)
-# Curriculum.create!(curriculums)
+Curriculum.create!(curriculums)

@@ -7,5 +7,7 @@
 = simple_form_for @discipline do |f|
   .field
     = f.input :name, label: "Название:"
+  .field
+    = f.input :department_id, label: "Кафедра:", collection: Department.pluck(:name, :id), required: false
   .actions
     = f.submit "Отправить"

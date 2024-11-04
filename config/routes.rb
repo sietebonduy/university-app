@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   get '/queries/topics' => 'queries#topics'
   get '/queries/theses' => 'queries#theses'
   get '/queries/thesis_advisors' => 'queries#thesis_advisors'
+  get '/queries/departments' => 'queries#departments'
+  get '/queries/teacher_schedules' => 'queries#teacher_schedules'
 
   resources :theses
   resources :topics
@@ -22,4 +24,5 @@ Rails.application.routes.draw do
   resources :students
   resources :departments
   resources :faculties
+  resources :schedules
 end

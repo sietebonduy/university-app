@@ -20,6 +20,14 @@ document.addEventListener("turbolinks:load", function() {
     });
 });
 
+document.addEventListener('turbo:load', () => {
+    flatpickr('.flatpickr', {
+        enableTime: true,
+        dateFormat: "Y-m-d H:i",
+        time_24hr: true
+    });
+});
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()

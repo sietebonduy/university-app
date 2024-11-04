@@ -1,0 +1,13 @@
+.mb-4
+  - if params[:action] == 'edit'
+    h1 Редактирование данных предмета №#{@department.id}
+  - else
+    h1 Добавление новой записи
+
+= simple_form_for @department do |f|
+  .field
+    = f.input :faculty_id, label: "Факультет:", collection: Faculty.all.map { |x| [x.name, x.id] }
+  .field
+    = f.input :name, label: "Название:"
+  .actions
+    = f.submit "Отправить"

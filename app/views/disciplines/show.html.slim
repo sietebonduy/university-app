@@ -11,6 +11,9 @@ div.container
             .list-group-item
               strong Название:
               | #{ @discipline.name }
+            .list-group-item
+              strong Кафедра:
+              | #{ @discipline.department&.name }
 
 
       .text-center.mt-4

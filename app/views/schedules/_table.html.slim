@@ -1,0 +1,36 @@
+.div.table
+  h1.mb-4.text-center Таблица: Расписание
+
+  - unless @schedules.blank?
+    .table-responsive
+      table.table.table-striped.table-bordered.table-hover
+        thead.table-dark
+          tr
+            th.text-center.align-middle Группа
+            th.text-center.align-middle Предмет
+            th.text-center.align-middle Преподаватель
+            th.text-center.align-middle Тип занятия
+            th.text-center.align-middle Дата
+            th.text-center.align-middle Время
+            th.text-center.align-middle Действия
+        tbody
+          - @schedules.each do |schedule|
+            tr
+              td.text-center.align-middle = schedule.group.name
+              td.text-center.align-middle = schedule.discipline.name
+              td.text-center.align-middle = schedule.teacher.full_name
+              td.text-center.align-middle = schedule.class_type.name
+              td.text-center.align-middle = schedule.start_time.present? ? schedule.start_time.strftime("%d.%m.%Y") : '—'
+              td.text-center.align-middle = schedule.start_time.present? ? schedule.start_time.strftime("%H:%M") : '—'
+              td.align-middle
+                .d-flex.flex-column.align-items-center
+                  = link_to 'Показать', schedule_path(schedule), class: 'btn btn-info btn-sm mb-2', style: 'width: 100%;'
+                  = link_to 'Редактировать', edit_schedule_path(schedule), class: 'btn btn-warning btn-sm mb-2', style: 'width: 100%;'
+                  = link_to 'Удалить', schedule_path(schedule), method: :delete, data: { confirm: 'Вы уверены, что хотите удалить этот элемент?' }, class: 'btn btn-danger btn-sm', style: 'width: 100%;'
+
+
+    p.text-end.fw-bold
+      | Общее количество расписаний:
+      = @schedules.count
+  - else
+    p.mt-5.text-center.fw-bold Записи не найдены

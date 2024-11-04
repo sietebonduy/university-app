@@ -1,0 +1,15 @@
+h1.text-center.my-4.text-info Запросы для кафедры
+.col-3
+  p Получить перечень кафедр, проводящих занятия в указанной группе либо на
+    указанном курсе указанного факультета в указанном семестре, либо за указанный период.
+
+.container.my-5
+  button#toggleFormButton.btn.btn-primary Показать форму
+  a.m-3 href="/queries/departments" class="btn btn-outline-secondary" role="button"
+    i.bi.bi-arrow-clockwise.d-inline-block.me-1
+    | Обновить
+
+  / = render 'theses/search_form'
+
+  .mt-5
+    / = render 'theses/table'

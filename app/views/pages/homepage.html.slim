@@ -7,17 +7,13 @@
 
   hr.my-4
 
-  .row.justify-content-center
-    .col-md-6
-      .card.shadow-lg
-        .card-body.text-center
-          h4.mb-4.text-success Выберите таблицу
-          = link_to 'Студенты', students_path, class: 'btn btn-success btn-lg btn-block mb-3 w-75'
-          = link_to 'Преподаватели', teachers_path, class: 'btn btn-success btn-lg btn-block mb-3 w-75'
-          = link_to 'Дипломы', theses_path, class: 'btn btn-success btn-lg btn-block mb-3 w-75'
-          = link_to 'Научные работы', topics_path, class: 'btn btn-success btn-lg btn-block mb-3 w-75'
-          = link_to 'Предметы', disciplines_path, class: 'btn btn-success btn-lg btn-block mb-3 w-75'
-          = link_to 'Типы занятий', class_types_path, class: 'btn btn-success btn-lg btn-block mb-3 w-75'
-          = link_to 'Оценки', exams_path, class: 'btn btn-success btn-lg btn-block mb-3 w-75'
-          = link_to 'Группы', groups_path, class: 'btn btn-success btn-lg btn-block mb-3 w-75'
-          = link_to 'Расписание', curriculums_path, class: 'btn btn-success btn-lg btn-block mb-3 w-75'
+.row.justify-content-center.mt-5
+  .col-md-8
+    .card.shadow-lg.border-0
+      .card-body.text-center
+        h4.mb-4.text-success Выберите таблицу
+        .row
+          - @tables.each do |label, path|
+            .col-md-4.mb-3.d-flex
+              = link_to path, class: 'btn btn-outline-success btn-lg w-100 h-100 d-flex align-items-center justify-content-center' do
+                = label

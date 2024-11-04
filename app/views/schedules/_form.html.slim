@@ -1,0 +1,19 @@
+.mb-4
+  - if params[:action] == 'edit'
+    h1 Редактирование данных расписания №#{@schedule.id}
+  - else
+    h1 Добавление новой записи
+
+= simple_form_for @schedule do |f|
+  .field
+    = f.input :group_id, label: "Группа:", collection: Group.pluck(:name, :id), required: false
+  .field
+    = f.input :discipline_id, label: "Предмет:", collection: Discipline.pluck(:name, :id), required: false
+  .field
+    = f.input :teacher_id, label: "Преподаватель:", collection: Teacher.all.map { |t| [t.full_name, t.id]}
+  .field
+    = f.input :class_type_id, label: "Тип занятия:", collection: ClassType.pluck(:name, :id), required: false
+  .field
+    = f.input :start_time, label: "Дата и время:", input_html: { class: 'flatpickr', autocomplete: 'off' }
+  .actions
+    = f.submit "Отправить"

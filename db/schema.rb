@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_10_28_205848) do
+ActiveRecord::Schema.define(version: 2024_11_04_173748) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,8 @@ ActiveRecord::Schema.define(version: 2024_10_28_205848) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "department_id"
+    t.index ["department_id"], name: "index_disciplines_on_department_id"
   end
 
   create_table "exams", force: :cascade do |t|
@@ -87,6 +89,20 @@ ActiveRecord::Schema.define(version: 2024_10_28_205848) do
     t.boolean "graduated", default: false
     t.index ["department_id"], name: "index_groups_on_department_id"
     t.index ["faculty_id"], name: "index_groups_on_faculty_id"
+  end
+
+  create_table "schedules", force: :cascade do |t|
+    t.bigint "discipline_id", null: false
+    t.bigint "teacher_id", null: false
+    t.bigint "group_id", null: false
+    t.bigint "class_type_id", null: false
+    t.datetime "start_time", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["class_type_id"], name: "index_schedules_on_class_type_id"
+    t.index ["discipline_id"], name: "index_schedules_on_discipline_id"
+    t.index ["group_id"], name: "index_schedules_on_group_id"
+    t.index ["teacher_id"], name: "index_schedules_on_teacher_id"
   end
 
   create_table "students", force: :cascade do |t|
@@ -148,11 +164,16 @@ ActiveRecord::Schema.define(version: 2024_10_28_205848) do
   add_foreign_key "curriculums", "disciplines"
   add_foreign_key "curriculums", "groups"
   add_foreign_key "departments", "faculties"
+  add_foreign_key "disciplines", "departments"
   add_foreign_key "exams", "disciplines"
   add_foreign_key "exams", "students"
   add_foreign_key "exams", "teachers"
   add_foreign_key "groups", "departments"
   add_foreign_key "groups", "faculties"
+  add_foreign_key "schedules", "class_types"
+  add_foreign_key "schedules", "disciplines"
+  add_foreign_key "schedules", "groups"
+  add_foreign_key "schedules", "teachers"
   add_foreign_key "students", "groups"
   add_foreign_key "teachers", "departments"
   add_foreign_key "theses", "students"

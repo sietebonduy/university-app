@@ -1,0 +1,28 @@
+.div.table
+  h1.mb-4.text-center Таблица: Кафедры
+
+  - unless @departments.blank?
+    .table-responsive
+      table.table.table-striped.table-bordered.table-hover
+        thead.table-dark
+          tr
+            th.text-center.align-middle Факультет
+            th.text-center.align-middle Название
+            th.text-center.align-middle Действия
+        tbody
+          - @departments.each do |department|
+            tr
+              td.text-center.align-middle = department.faculty.name
+              td.text-center.align-middle = department.name
+              td.align-middle
+                .d-flex.flex-column.align-items-center
+                  = link_to 'Показать', department_path(department), class: 'btn btn-info btn-sm mb-2', style: 'width: 100%;'
+                  = link_to 'Редактировать', edit_department_path(department), class: 'btn btn-warning btn-sm mb-2', style: 'width: 100%;'
+                  = link_to 'Удалить', department_path(department), method: :delete, data: { confirm: 'Вы уверены, что хотите удалить этот элемент?' }, class: 'btn btn-danger btn-sm', style: 'width: 100%;'
+
+
+    p.text-end.fw-bold
+      | Общее количество предметов:
+      = @departments.count
+  - else
+    p.mt-5.text-center.fw-bold Записи не найдены

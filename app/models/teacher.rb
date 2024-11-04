@@ -5,6 +5,7 @@ class Teacher < ApplicationRecord
   has_one :faculty, through: :department
   has_many :topic
   has_many :exams
+  has_many :schedules
 
   enum kind: { assistant: 0, associate_professor: 1, professor: 2, senior_lecturer: 3 }
 
@@ -27,6 +28,6 @@ class Teacher < ApplicationRecord
   end
 
   def self.ransackable_associations(auth_object = nil)
-    ['department', 'faculty', 'topic']
+    ['department', 'faculty', 'topic', 'schedule']
   end
 end

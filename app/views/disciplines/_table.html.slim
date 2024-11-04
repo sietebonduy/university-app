@@ -7,11 +7,13 @@
         thead.table-dark
           tr
             th.text-center.align-middle Название
+            th.text-center.align-middle Кафедра
             th.text-center.align-middle Действия
         tbody
           - @disciplines.each do |discipline|
             tr
               td.text-center.align-middle = discipline.name
+              td.text-center.align-middle = discipline.department&.name
               td.align-middle
                 .d-flex.flex-column.align-items-center
                   = link_to 'Показать', discipline_path(discipline), class: 'btn btn-info btn-sm mb-2', style: 'width: 100%;'

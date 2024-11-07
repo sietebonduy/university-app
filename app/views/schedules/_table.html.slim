@@ -16,9 +16,9 @@
         tbody
           - @schedules.each do |schedule|
             tr
-              td.text-center.align-middle = schedule.group.name
-              td.text-center.align-middle = schedule.discipline.name
-              td.text-center.align-middle = schedule.teacher.full_name
+              td.text-center.align-middle = link_to schedule.group.name, group_url(schedule.group)
+              td.text-center.align-middle = link_to schedule.discipline.name, discipline_url(schedule.discipline)
+              td.text-center.align-middle = link_to schedule.teacher.full_name, teacher_url(schedule.teacher)
               td.text-center.align-middle = schedule.class_type.name
               td.text-center.align-middle = schedule.start_time.present? ? schedule.start_time.strftime("%d.%m.%Y") : '—'
               td.text-center.align-middle = schedule.start_time.present? ? schedule.start_time.strftime("%H:%M") : '—'

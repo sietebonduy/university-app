@@ -28,9 +28,6 @@
                   = link_to 'Редактировать', edit_thesis_path(thesis), class: 'btn btn-warning btn-sm mb-2', style: 'width: 100%;'
                   = link_to 'Удалить', thesis_path(thesis), method: :delete, data: { confirm: 'Вы уверены, что хотите удалить этот элемент?' }, class: 'btn btn-danger btn-sm', style: 'width: 100%;'
 
-
-    p.text-end.fw-bold
-      | Общее количество работ:
-      = @theses.count
+    p.text-end.fw-bold = "Общее количество: #{@theses.count}"
   - else
     p.mt-5.text-center.fw-bold Записи не найдены

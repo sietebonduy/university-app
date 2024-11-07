@@ -11,7 +11,8 @@ class PagesController < ApplicationController
       ['Оценки', exams_path],
       ['Учебный план', curriculums_path],
       ['Кафедры', departments_path],
-      ['Расписание', schedules_path]
+      ['Расписание', schedules_path],
+      ['Факультеты', faculties_path]
     ].sort
   end
 

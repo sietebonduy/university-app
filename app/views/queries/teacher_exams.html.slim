@@ -1,0 +1,15 @@
+h1.text-center.my-4.text-info Запрос №9
+.col-4
+  p Получить перечень преподавателей, принимающих (принимавших) экзамены в
+    указанных группах, по указанным дисциплинам, в указанном семестре.
+
+.container.my-5
+  button#toggleFormButton.btn.btn-primary Показать форму
+  a.m-3 href="/queries/teacher_exams" class="btn btn-outline-secondary" role="button"
+    i.bi.bi-arrow-clockwise.d-inline-block.me-1
+    | Обновить
+
+  = render 'shared/teacher_exams/search_form'
+
+  .mt-5
+    = render 'teachers/table'

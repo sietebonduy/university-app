@@ -1,0 +1,14 @@
+h1.text-center.my-4.text-info Запрос №7
+.col-4
+  p Получить список и общее число студентов указанных групп, сдавших зачет либо
+    экзамен по указанной дисциплине с указанной оценкой.
+.container.my-5
+  button#toggleFormButton.btn.btn-primary Показать форму
+  a.m-3 href="/queries/students_exams" class="btn btn-outline-secondary" role="button"
+    i.bi.bi-arrow-clockwise.d-inline-block.me-1
+    | Обновить
+
+  = render 'shared/students_exams/search_form'
+
+  .mt-5
+    = render 'students/table'

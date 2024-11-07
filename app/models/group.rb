@@ -5,7 +5,7 @@ class Group < ApplicationRecord
   has_many :curriculums
   has_many :schedules
 
-  enum course: { '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8}
+  enum course: { '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8 }
 
   def self.ransackable_attributes(auth_object = nil)
     ["created_at", "enrollment_year", "faculty_id", "department_id", "id", "name", "updated_at", 'course']

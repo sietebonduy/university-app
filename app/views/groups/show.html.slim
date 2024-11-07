@@ -24,6 +24,9 @@ div.container
               strong Курс:
               | #{ @group.course }
             .list-group-item
+              strong Семестр:
+              | #{ @group.semester }
+            .list-group-item
               strong Выпустились?
               | #{ @group.graduated ? 'Да' : 'Нет' }
 

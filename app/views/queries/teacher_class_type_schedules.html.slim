@@ -1,0 +1,16 @@
+h1.text-center.my-4.text-info Запрос №6
+.col-4
+  p Получить перечень и общее число преподавателей проводивших (проводящих)
+    лекционные, семинарские и другие виды занятий в указанной группе либо на
+    указанном курсе указанного факультета в указанном семестре, либо за указанный
+    период.
+.container.my-5
+  button#toggleFormButton.btn.btn-primary Показать форму
+  a.m-3 href="/queries/teacher_class_type_schedules" class="btn btn-outline-secondary" role="button"
+    i.bi.bi-arrow-clockwise.d-inline-block.me-1
+    | Обновить
+
+  = render 'shared/teacher_class_type_schedules/search_form'
+
+  .mt-5
+    = render 'teachers/table'

@@ -23,6 +23,12 @@ div.container
             .list-group-item
               strong Семестр:
               | #{@exam.semester}
+            .list-group-item
+              strong Курс:
+              | #{@exam.course}
+            .list-group-item
+              strong Дата сдачи:
+              | #{@exam.pass_date}
 
       .text-center.mt-4
         = link_to 'Редактировать', edit_exam_path(@exam), class: 'btn btn-warning btn-lg me-2'

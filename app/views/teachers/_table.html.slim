@@ -1,5 +1,5 @@
 .div.table
-  h1.mb-4.text-center Таблица: Преподаватели
+  h1.mb-4.text-center Преподаватели
 
   - unless @teachers.blank?
     .table-responsive
@@ -36,8 +36,6 @@
                   = link_to 'Редактировать', edit_teacher_path(teacher), class: 'btn btn-warning btn-sm mb-2', style: 'width: 100%;'
                   = link_to 'Удалить', teacher_path(teacher), method: :delete, data: { confirm: 'Вы уверены, что хотите удалить этот элемент?' }, class: 'btn btn-danger btn-sm', style: 'width: 100%;'
 
-    p.text-end.fw-bold
-      | Общее количество преподавателей:
-      = @teachers.count
+    p.text-end.fw-bold = "Общее количество: #{@teachers.count}"
   - else
     p.mt-5.text-center.fw-bold Записи не найдены

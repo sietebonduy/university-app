@@ -1,0 +1,16 @@
+h1.text-center.my-4.text-info Запрос №10
+.col-4
+  p  Получить список студентов указанных групп, либо которым заданный
+    преподаватель поставил некоторую оценку за экзамен по определенным
+    дисциплинам, в указанных семестрах, за некоторый период.
+
+.container.my-5
+  button#toggleFormButton.btn.btn-primary Показать форму
+  a.m-3 href="/queries/students_teachers_exams" class="btn btn-outline-secondary" role="button"
+    i.bi.bi-arrow-clockwise.d-inline-block.me-1
+    | Обновить
+
+  = render 'shared/students_teachers_exams/search_form'
+
+  .mt-5
+    = render 'students/table'

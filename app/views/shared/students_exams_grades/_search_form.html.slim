@@ -1,0 +1,21 @@
+.row.mt-5#formContainer
+  = search_form_for @q, builder: SimpleForm::FormBuilder, wrapper: :vertical_form, html: { class: 'form-horizontal', role: 'form', method: :get }, url: queries_students_exams_grades_path do |f|
+    .row
+      .col-md-8.offset-md-2
+        .card
+          .card-header.bg-primary.text-white
+            h5.mb-0 Фильтр
+          .card-body
+            .row
+              .col-md-4 = f.input :group_faculty_id_eq, label: 'Факультет:', collection: Faculty.pluck(:name, :id), required: false
+              .col-md-4 = f.input :group_id_eq, label: 'Группа:', collection: Group.pluck(:name, :id), required: false
+              .col-md-4 = f.input :exams_discipline_id_eq, label: 'Предмет:', collection: Discipline.pluck(:name, :id), required: false
+            .row.mt-4
+              .col-md-4 = f.input :exams_grade_eq, label: 'Оценка:', collection: [[ 'Отлично', 5 ], ['Хорошо', 4], ['Удовлетворительно', 3], ['Не сдал', 2]], required: false
+              .col-md-4 = f.input :exams_course_eq, label: 'Курс:', collection: 1..4, required: false
+            .row.mt-4
+              .col-md-4 = f.input :excellent_grades, label: 'Все пятерки', as: :boolean, input_html: { checked: @excellent_grades }, required: false
+              .col-md-4 = f.input :without_bad_grades, label: 'Без троек и двоек', as: :boolean, input_html: { checked: @without_bad_grades }, required: false
+              .col-md-4 = f.input :without_ungraded, label: 'Без двоек', as: :boolean, input_html: { checked: @without_ungraded }, required: false
+
+          .text-center.mb-4 = f.button :submit, 'Фильтровать', class: 'btn btn-primary w-25'

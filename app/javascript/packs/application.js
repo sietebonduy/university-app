@@ -28,6 +28,12 @@ document.addEventListener('turbo:load', () => {
     });
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    flatpickr("input[data-date-format]", {
+        dateFormat: "d.m.Y"
+    });
+});
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()

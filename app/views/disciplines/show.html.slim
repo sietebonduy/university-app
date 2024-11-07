@@ -13,7 +13,7 @@ div.container
               | #{ @discipline.name }
             .list-group-item
               strong Кафедра:
-              | #{ @discipline.department&.name }
+              = link_to @discipline.department.name, department_url(@discipline.department)
 
 
       .text-center.mt-4

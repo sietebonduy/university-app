@@ -1,5 +1,5 @@
 .row.mt-5#formContainer
-  = search_form_for @q, builder: SimpleForm::FormBuilder, wrapper: :vertical_form, html: { class: 'form-horizontal', role: 'form', method: :get }, url: queries_departments_path do |f|
+  = form_with model: @departments, url: queries_departments_path, method: :get do |f|
     .row
       .col-md-8.offset-md-2
         .card
@@ -7,8 +7,24 @@
             h5.mb-0 Фильтр
           .card-body
             .row
-              .col-md-4 = f.input :teacher_id_eq, label: 'Преподаватель:', collection: Teacher.all.map { |t| [t.full_name, t.id] }, required: false
-              .col-md-4 = f.input :student_group_faculty_id_eq, label: 'Факультет:', collection: Faculty.pluck(:name, :id), required: false
-              .col-md-4 = f.input :student_group_department_id_eq, label: 'Кафедра:', collection: Department.pluck(:name, :id), required: false
+              .col-md-4.mb-3
+                .mb-1 = f.label 'Группа:'
+                = f.select :group_id, options_from_collection_for_select(Group.all, :id, :name, @group_id), { include_blank: 'Выберите группу' }, { class: 'form-control' }
+              .col-md-4
+                .mb-1 = f.label 'Факультет:'
+                = f.select :faculty_id, options_from_collection_for_select(Faculty.all, :id, :name, @faculty_id), { include_blank: 'Выберите факультет' }, { class: 'form-control' }
+              .col-md-4
+                .mb-1 = f.label 'Семестр:'
+                = f.select :semester, options_for_select((1..8).to_a, @semester), { include_blank: 'Выберите семестр' }, { class: 'form-control' }
+              .col-md-4
+                .mb-1 = f.label 'Курс:'
+                = f.select :course, options_for_select((1..4).to_a, @course), { include_blank: 'Выберите курс' }, { class: 'form-control' }
+              .col-md-4
+                .mb-1 = f.label 'Начало периода:'
+                = f.date_field :start_date, value: @start_date, class: 'form-control'
+              .col-md-4
+                .mb-1 = f.label 'Конец периода:'
+                = f.date_field :end_date, value: @end_date, class: 'form-control'
 
-          .text-center.mb-4 = f.button :submit, 'Фильтровать', class: 'btn btn-primary w-25'
+          .text-center.my-4
+            = f.submit 'Фильтровать', class: 'btn btn-primary w-25'

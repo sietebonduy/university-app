@@ -19,7 +19,7 @@ class FacultiesController < ApplicationController
     @faculty = Faculty.new(faculty_params)
 
     if @faculty.save
-      redirect_to @faculty, notice: "Faculty was successfully created."
+      redirect_to faculties_path, notice: "Faculty was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -27,7 +27,7 @@ class FacultiesController < ApplicationController
 
   def update
       if @faculty.update(faculty_params)
-        redirect_to @faculty, notice: "Faculty was successfully updated."
+        redirect_to faculties_path, notice: "Faculty was successfully updated."
       else
         render :edit, status: :unprocessable_entity
       end
@@ -45,6 +45,6 @@ class FacultiesController < ApplicationController
     end
 
     def faculty_params
-      params.require(:faculty).permit(:name, :dean)
+      params.require(:faculty).permit(:name)
     end
 end

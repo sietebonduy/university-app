@@ -1,0 +1,21 @@
+.row.mt-5#formContainer
+  = search_form_for @q, builder: SimpleForm::FormBuilder, wrapper: :vertical_form, html: { class: 'form-horizontal', role: 'form', method: :get }, url: queries_students_teachers_exams_path do |f|
+    .row
+      .col-md-8.offset-md-2
+        .card
+          .card-header.bg-primary.text-white
+            h5.mb-0 Фильтр
+          .card-body
+            .row
+              .col-md-4 = f.input :group_faculty_id_eq, label: 'Факультет:', collection: Faculty.pluck(:name, :id), required: false
+              .col-md-4 = f.input :group_id_eq, label: 'Группа:', collection: Group.pluck(:name, :id), required: false
+              .col-md-4 = f.input :exams_discipline_id_eq, label: 'Предмет:', collection: Discipline.pluck(:name, :id), required: false
+            .row.mt-4
+              .col-md-4 = f.input :exams_teacher_id_eq, label: 'Преподаватель:', collection: Teacher.all.map { |t| [t.full_name, t.id]}, required: false
+              .col-md-4 = f.input :exams_grade_eq, label: 'Оценка:', collection: [[ 'Отлично', 5 ], ['Хорошо', 4], ['Удовлетворительно', 3], ['Не сдал', 2]], required: false
+              .col-md-4 = f.input :exams_semester_eq, label: 'Семестр:', collection: 1..8, required: false
+            .row.mt-4
+              .col-md-4 = f.input :exams_pass_date_gteq, label: 'Начало периода:', input_html: { class: 'form-control datepicker' }, required: false
+              .col-md-4 = f.input :exams_pass_date_lteq, label: 'Конец периода:', input_html: { class: 'form-control datepicker' }, required: false
+
+          .text-center.mb-4 = f.button :submit, 'Фильтровать', class: 'btn btn-primary w-25'

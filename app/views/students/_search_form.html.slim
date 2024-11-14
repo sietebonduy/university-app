@@ -11,7 +11,7 @@
               .col-md-4 = f.input :first_name_cont, label: 'Имя:', required: false
               .col-md-4= f.input :patronymic_cont, label: 'Отчество:', required: false
             .row.mt-4
-              .col-md-4 = f.input :gender_eq, label: 'Пол:', required: false, collection: [['Мужской', 'М'], ['Женский', 'Ж']]
+              .col-md-4 = f.input :gender_eq, label: 'Пол:', required: false, collection: [['Мужской', 'male'], ['Женский', 'female']]
               .col-md-4 = f.input :birth_date_eq, label: 'Дата рождения:', required: false, input_html: { type: 'date' }
               .col-md-4 = f.input :has_children_eq, label: 'Есть дети?', collection: [['Да', true], ['Нет', false]], required: false
             .row.mt-4

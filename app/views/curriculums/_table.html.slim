@@ -12,6 +12,7 @@
             th.text-center.align-middle Часы
             th.text-center.align-middle Форма контроля
             th.text-center.align-middle Вид занятия
+            th.text-center.align-middle Преподаватель
             th.text-center.align-middle Действия
         tbody
           - @curriculums.each do |curriculum|
@@ -22,6 +23,7 @@
               td.text-center.align-middle = curriculum.hours
               td.text-center.align-middle = curriculum.control_form.name
               td.text-center.align-middle = curriculum.class_type.name
+              td.text-center.align-middle = curriculum.teacher.full_name
               td.align-middle
                 .d-flex.flex-column.align-items-center
                   = link_to 'Показать', curriculum_path(curriculum), class: 'btn btn-info btn-sm mb-2', style: 'width: 100%;'

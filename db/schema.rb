@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_11_07_230049) do
+ActiveRecord::Schema.define(version: 2024_11_08_131542) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,10 +36,12 @@ ActiveRecord::Schema.define(version: 2024_11_07_230049) do
     t.bigint "class_type_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "teacher_id"
     t.index ["class_type_id"], name: "index_curriculums_on_class_type_id"
     t.index ["control_form_id"], name: "index_curriculums_on_control_form_id"
     t.index ["discipline_id"], name: "index_curriculums_on_discipline_id"
     t.index ["group_id"], name: "index_curriculums_on_group_id"
+    t.index ["teacher_id"], name: "index_curriculums_on_teacher_id"
   end
 
   create_table "departments", force: :cascade do |t|
@@ -166,6 +168,7 @@ ActiveRecord::Schema.define(version: 2024_11_07_230049) do
   add_foreign_key "curriculums", "control_forms"
   add_foreign_key "curriculums", "disciplines"
   add_foreign_key "curriculums", "groups"
+  add_foreign_key "curriculums", "teachers"
   add_foreign_key "departments", "faculties"
   add_foreign_key "disciplines", "departments"
   add_foreign_key "exams", "disciplines"

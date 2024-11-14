@@ -4,6 +4,7 @@ class Teacher < ApplicationRecord
   has_many :topic
   has_many :exams
   has_many :schedules
+  has_many :curriculums
   has_many :disciplines, through: :schedules
   belongs_to :department
   has_one :faculty, through: :department
@@ -33,6 +34,6 @@ class Teacher < ApplicationRecord
   end
 
   def self.ransackable_associations(auth_object = nil)
-    ['department', 'faculty', 'topic', 'schedule', 'exams']
+    ['department', 'faculty', 'topic', 'schedule', 'exams', 'curriculums']
   end
 end

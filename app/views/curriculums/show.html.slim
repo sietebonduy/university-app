@@ -5,7 +5,7 @@ div.container
     .col-md-8.offset-md-2
       .card.shadow
         .card-header.bg-primary.text-white
-          h5 Информация о учебном плане
+          h5 Информация об учебном плане
         .card-body
           .list-group
             .list-group-item
@@ -26,6 +26,9 @@ div.container
             .list-group-item
               strong Вид занятия
               | #{ @curriculum.class_type.name }
+            .list-group-item
+              strong Преподаватель
+              | #{ @curriculum.teacher.full_name }
 
       .text-center.mt-4
         = link_to 'Редактировать', edit_curriculum_path(@curriculum), class: 'btn btn-warning btn-lg me-2'

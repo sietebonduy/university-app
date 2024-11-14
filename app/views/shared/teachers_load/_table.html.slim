@@ -1,0 +1,26 @@
+.div.table
+  h1.mb-4.text-center Нагрузка преподавателей
+
+  - unless @teachers_load.blank?
+    .table-responsive
+      table.table.table-striped.table-bordered.table-hover
+        thead.table-dark
+          tr
+            th.text-center.align-middle Преподаватель
+            th.text-center.align-middle Предмет
+            th.text-center.align-middle Часы
+            th.text-center.align-middle Кафедра
+            th.text-center.align-middle Семестр
+        tbody
+          - @teachers_load.each do |teacher_load|
+            tr
+              td.text-center.align-middle = teacher_load.teacher.full_name
+              td.text-center.align-middle = teacher_load.discipline.name
+              td.text-center.align-middle = teacher_load.hours
+              td.text-center.align-middle = teacher_load.teacher.department.name
+              td.text-center.align-middle = teacher_load.semester
+
+    p.text-end.fw-bold = "Общее количество: #{@teachers_load.count}"
+    p.text-end.fw-bold = "Общая нагрузка: #{@total_hours} ч."
+  - else
+    p.mt-5.text-center.fw-bold Записи не найдены

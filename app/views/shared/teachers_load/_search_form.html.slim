@@ -1,0 +1,23 @@
+.row.mt-5#formContainer
+  = form_with model: @teachers_load, url: queries_teachers_load_path, method: :get do |f|
+    .row
+      .col-md-8.offset-md-2
+        .card
+          .card-header.bg-primary.text-white
+            h5.mb-0 Фильтр
+          .card-body
+            .row
+              .col-md-4.mb-3
+                .mb-1 = f.label :teacher_id, 'Преподаватель:'
+                = f.select :teacher_id, options_from_collection_for_select(Teacher.all, :id, ->(teacher) { teacher.full_name }, @teacher_id), { include_blank: 'Выберите преподавателя' }, { class: 'form-control' }
+              .col-md-4.mb-3
+                .mb-1 = f.label :discipline_id, 'Предмет:'
+                = f.select :discipline_id, options_from_collection_for_select(Discipline.all, :id, :name, @discipline_id), { include_blank: 'Выберите предмет' }, { class: 'form-control' }
+              .col-md-4.mb-3
+                .mb-1 = f.label :department_id, 'Кафедра:'
+                = f.select :department_id, options_from_collection_for_select(Department.all, :id, :name, @department_id), { include_blank: 'Выберите кафедру' }, { class: 'form-control' }
+              .col-md-4.mb-3
+                .mb-1 = f.label :semester, 'Семестр:'
+                = f.select :semester, options_for_select((1..8).to_a, @semester), { include_blank: 'Выберите семестр' }, { class: 'form-control' }
+
+          .text-center.mb-4 = f.submit 'Фильтровать', class: 'btn btn-primary w-25'

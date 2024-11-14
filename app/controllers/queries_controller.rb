@@ -106,7 +106,17 @@ class QueriesController < ApplicationController
   end
 
   def teachers_load
-    @q = Teacher.ransack(params[:q])
-    @teachers = @q.result(distinct: true)
+    @teacher_id = params.dig(:curriculum, :teacher_id)
+    @department_id = params.dig(:curriculum, :department_id)
+    @discipline_id = params.dig(:curriculum, :discipline_id)
+    @semester = params.dig(:curriculum, :semester)
+
+    @teachers_load = Curriculum.all
+    @teachers_load = @teachers_load.where(semester: @semester) if @semester.present?
+    @teachers_load = @teachers_load.where(teacher_id: @teacher_id) if @teacher_id.present?
+    @teachers_load = @teachers_load.where(discipline_id: @discipline_id) if @discipline_id.present?
+    @teachers_load = @teachers_load.joins(:teacher).where(teacher: { department_id: @department_id }) if @department_id.present?
+
+    @total_hours = @teachers_load.sum(:hours)
   end
 end

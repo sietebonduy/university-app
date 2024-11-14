@@ -17,5 +17,7 @@
     = f.input :control_form_id, label: "Форма контроля:", collection: ControlForm.all.map { |x| [x.name, x.id] }
   .field
     = f.input :class_type_id, label: "Вид занятия", collection: ClassType.all.map { |x| [x.name, x.id] }
+  .field
+    = f.input :teacher_id, label: "Преподаватель", collection: Teacher.all.map { |t| [t.full_name, t.id] }
   .actions
     = f.submit "Отправить"

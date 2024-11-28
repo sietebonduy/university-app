@@ -1,5 +1,6 @@
 class DepartmentsController < ApplicationController
   before_action :set_department, only: %i[ show edit update destroy ]
+  before_action :check_if_admin
 
   def index
     @departments = Department.all

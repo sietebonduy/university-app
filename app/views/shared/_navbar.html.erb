@@ -9,15 +9,25 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <i class="fa fa-home"></i>
           <a class="nav-link active" aria-current="page" href="/">Главная</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link active" href="/queries">Запросы</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="https://getbootstrap.com/docs/5.1/getting-started/introduction/" target="_blank">Bootstrap docs</a>
-        </li>
+        <% if current_user %>
+          <% if current_user.is_admin %>
+            <li class="nav-item">
+              <a class="nav-link active" href="/queries">Запросы</a>
+            </li>
+          <% end %>
+          <li class="nav-item">
+            <%= link_to 'Выйти', logout_path, method: :delete, class: 'nav-link text-danger' %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to 'Войти', log_in_path, class: 'nav-link text-success' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Зарегистрироваться', sign_up_path, class: 'nav-link text-primary' %>
+          </li>
+        <% end %>
       </ul>
     </div>
   </div>
@@ -31,13 +41,34 @@
 
     .navbar {
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        padding: 1rem;
+    }
+
+    .navbar-brand {
+        font-size: 1.5rem;
+        font-weight: bold;
     }
 
     .nav-link {
-        transition: color 0.3s;
+        transition: color 0.3s, transform 0.3s;
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
     }
 
     .nav-link:hover {
-        color: #ffeb3b; /* Цвет при наведении */
+        color: #ffeb3b;
+        transform: scale(1.1);
+    }
+
+    .navbar-toggler {
+        border: none;
+    }
+
+    .navbar-toggler-icon {
+        background-color: #fff;
+    }
+
+    .navbar-collapse {
+        justify-content: flex-end;
     }
 </style>

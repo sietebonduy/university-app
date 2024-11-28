@@ -1,5 +1,6 @@
 class ControlFormsController < ApplicationController
   before_action :set_control_form, only: %i[ show edit update destroy ]
+  before_action :check_if_admin
 
   def index
     @control_forms = ControlForm.all

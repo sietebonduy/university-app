@@ -1,0 +1,40 @@
+<h1 class="text-center mt-5">Регистрация</h1>
+
+<div class="container d-flex justify-content-center mt-5">
+  <div class="card shadow p-4" style="width: 30rem;">
+    <%= form_with model: @user, local: true, data: { turbo: false }, url: sign_up_path do |form| %>
+      <% if @user.errors.any? %>
+        <div class="alert alert-danger">
+          <h5 class="text-center">Исправьте следующие ошибки:</h5>
+          <ul>
+            <% @user.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="mb-3">
+        <%= form.label :email, "Email", class: "form-label" %>
+        <%= form.text_field :email, class: "form-control", placeholder: "user@example.com" %>
+      </div>
+      <div class="mb-3">
+        <%= form.label :password, "Пароль", class: "form-label" %>
+        <%= form.password_field :password, class: "form-control", placeholder: "Введите пароль" %>
+      </div>
+      <div class="mb-3">
+        <%= form.label :password_confirmation, "Подтверждение пароля", class: "form-label" %>
+        <%= form.password_field :password_confirmation, class: "form-control", placeholder: "Повторите пароль" %>
+      </div>
+      <div class="d-grid">
+        <%= form.submit "Зарегистрироваться", class: 'btn btn-primary' %>
+      </div>
+
+      <div class="text-center mt-3">
+        <small>
+          Уже есть аккаунт? <a href="<%= log_in_path %>" class="text-decoration-none">Войти</a>
+        </small>
+      </div>
+    <% end %>
+  </div>
+</div>

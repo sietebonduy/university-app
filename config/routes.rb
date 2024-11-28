@@ -2,6 +2,15 @@ Rails.application.routes.draw do
   root to: 'pages#homepage'
   get '/pages/maintainer_info' => 'pages#maintainer_info'
 
+  get "sign_up", to: "registration#new"
+  post "sign_up", to: "registration#create"
+
+  get "log_in", to: "sessions#new"
+  post "log_in", to: "sessions#create"
+  delete "logout", to: "sessions#destroy"
+
+  resources :users, except: [:new, :create]
+
   # Запросы
   get '/queries' => 'queries#index'
   get '/queries/students' => 'queries#students'

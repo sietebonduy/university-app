@@ -1,0 +1,27 @@
+.div.table
+  h1.mb-4.text-center Пользователи
+
+  - unless @users.blank?
+    .table-responsive
+      table.table.table-striped.table-bordered.table-hover
+        thead.table-dark
+          tr
+            th.text-center.align-middle Email
+            th.text-center.align-middle Роль
+            th.text-center.align-middle Действия
+        tbody
+          - @users.each do |user|
+            tr
+              td.text-center.align-middle = user.email
+              td.text-center.align-middle = user.is_admin ? 'Администратор' : 'Пользователь'
+              td.align-middle
+                .d-flex.flex-column.align-items-center
+                  = link_to 'Показать', user_path(user), class: 'btn btn-info btn-sm mb-2', style: 'width: 100%;'
+                  = link_to 'Редактировать', edit_user_path(user), class: 'btn btn-warning btn-sm mb-2', style: 'width: 100%;'
+                  = link_to 'Удалить', user_path(user), method: :delete, data: { confirm: 'Вы уверены, что хотите удалить этого пользователя?' }, class: 'btn btn-danger btn-sm', style: 'width: 100%;'
+
+    p.text-end.fw-bold
+      | Общее количество пользователей:
+      = @users.count
+  - else
+    p.mt-5.text-center.fw-bold Записи не найдены

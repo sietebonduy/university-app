@@ -1,5 +1,6 @@
 class TopicsController < ApplicationController
   before_action :set_topic, only: %i[ show edit update destroy ]
+  before_action :check_if_admin
 
   def index
     @topics = Topic.all

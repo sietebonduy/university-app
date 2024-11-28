@@ -1,0 +1,50 @@
+version: '3.9'
+
+services:
+  web:
+    container_name: university_web
+    platform: linux/amd64
+    build:
+      context: .
+    image: university_application
+    env_file: .env
+    stdin_open: true
+    tty: true
+    command: bash -c "rm -f tmp/pids/server.pid && ./bin/rails s -b '0.0.0.0' -p 3000"
+    volumes:
+      - .:/app
+      - bundle_cache:/usr/local/bundle
+      - ./tmp/shared_data:/app/tmp/shared_data
+      - ./tmp/chrome_downloads:/app/tmp/chrome_downloads
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+    networks:
+      - university
+    environment:
+      RAILS_LOG_TO_STDOUT: 'true'
+      DATABASE_HOST: 'postgres'
+      DATABASE_USERNAME: 'university'
+      DATABASE_PASSWORD: 'university'
+
+  postgres:
+    container_name: postgres
+    image: postgres:10
+    environment:
+      POSTGRES_DB: university_test
+      POSTGRES_USER: university
+      POSTGRES_PASSWORD: university
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - university
+
+volumes:
+  bundle_cache:
+  postgres:
+
+networks:
+  university:

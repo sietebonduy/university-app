@@ -1,5 +1,6 @@
 class FacultiesController < ApplicationController
   before_action :set_faculty, only: %i[ show edit update destroy ]
+  before_action :check_if_admin
 
   def index
     @faculties = Faculty.all

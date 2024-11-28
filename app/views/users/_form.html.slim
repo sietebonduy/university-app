@@ -1,0 +1,13 @@
+.mb-4.text-center
+  - if params[:action] == 'edit'
+    h1 Редактирование данных пользователя №#{@user.id}
+  - else
+    h1 Добавление нового пользователя
+
+= simple_form_for @user do |f|
+  .field
+    = f.input :email, label: "Email:"
+  .field
+    = f.input :is_admin, label: "Админ?", as: :boolean
+  .actions
+    = f.submit "Отправить"

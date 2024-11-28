@@ -12,7 +12,8 @@ class PagesController < ApplicationController
       ['Учебный план', curriculums_path],
       ['Кафедры', departments_path],
       ['Расписание', schedules_path],
-      ['Факультеты', faculties_path]
+      ['Факультеты', faculties_path],
+      ['Пользователи', users_path]
     ].sort
   end
 

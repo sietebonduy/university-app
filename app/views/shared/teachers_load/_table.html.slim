@@ -7,6 +7,7 @@
         thead.table-dark
           tr
             th.text-center.align-middle Преподаватель
+            th.text-center.align-middle Группа
             th.text-center.align-middle Предмет
             th.text-center.align-middle Часы
             th.text-center.align-middle Кафедра
@@ -15,6 +16,7 @@
           - @teachers_load.each do |teacher_load|
             tr
               td.text-center.align-middle = teacher_load.teacher.full_name
+              td.text-center.align-middle = teacher_load.group.name
               td.text-center.align-middle = teacher_load.discipline.name
               td.text-center.align-middle = teacher_load.hours
               td.text-center.align-middle = teacher_load.teacher.department.name

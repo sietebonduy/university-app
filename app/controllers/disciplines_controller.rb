@@ -1,5 +1,6 @@
 class DisciplinesController < ApplicationController
   before_action :set_discipline, only: %i[ show edit update destroy ]
+  before_action :check_if_admin
 
   def index
     @disciplines = Discipline.all

@@ -1,5 +1,6 @@
 class ThesesController < ApplicationController
   before_action :set_thesis, only: %i[ show edit update destroy ]
+  before_action :check_if_admin
 
   def index
     @theses = Thesis.all
